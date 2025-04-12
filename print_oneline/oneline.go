@@ -9,4 +9,6 @@ import "fmt"
 func main() {
 	message := fmt.Sprintf("I am a %s-liner!", "one")
 	fmt.Println(message)
+
+	fmt.Println(fmt.Sprintf("I am another %d-liner!", 1))
 }
