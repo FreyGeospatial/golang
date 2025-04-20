@@ -21,4 +21,10 @@ func main() {
 	// Using fmt.Sprintf to create a formatted string
 	formattedString := fmt.Sprintf("Name: %s, Age: %d, Height: %.1f, Is Adult: %t", name, age, height, isAdult)
 	fmt.Println(formattedString)
+
+	// printing variables' types:
+	fmt.Printf("Type of name: %T\n", name)
+	fmt.Printf("Type of age: %T\n", age)
+	fmt.Printf("Type of height: %T\n", height)
+	fmt.Printf("Type of isAdult: %T\n", isAdult)
 }
