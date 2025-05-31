@@ -19,7 +19,7 @@ func main() {
 
 	some_int := 42          // Declare an int variable
 	var p *int              // Declare a pointer to an int without assigning it
-	var p2 *int = &some_int // Declare a pointer to an int and assign it the address of anInt
+	var p2 *int = &some_int // Declare a pointer to an int and assign it the address of some_int
 
 	// fmt.Println("Value of p:", *p) // this will error because p is nil
 
