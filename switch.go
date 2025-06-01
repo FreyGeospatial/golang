@@ -50,4 +50,16 @@ func main() {
 		fmt.Println("Unknown day, please check your calendar!")
 	}
 	// fmt.Println(day) // Uncommenting this line will cause an error because 'day' is scoped to the switch statement only.
+
+	// normally, switch statements will break after a case is matched,
+	// but you can use fallthrough to continue to the next case.
+	switch num := 6; {
+	case num%2 == 0:
+		fmt.Println(num, "is an even number")
+		fallthrough
+	case (num % 2) != 0:
+		fmt.Println(num, "is an odd number, but using fallthrough here will print this regardless of the previous case.")
+	default:
+		fmt.Println(num, "is zero or not a valid number. If one of the previous cases matched, this will not be printed, unless you use fallthrough on the previous case.")
+	}
 }
