@@ -1,9 +1,11 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"net/http"
+	"strings"
 )
 
 const url = "https://services.explorecalifornia.org/json/tours.php"
@@ -22,12 +24,35 @@ func main() {
 
 	bytes, err := io.ReadAll(response.Body)
 	checkError(err)
-	fmt.Println("Response body:\n\n")
-	fmt.Println(string(bytes))
+	content := string(bytes)
+	tours := toursFromJSON(content)
+	for _, tour := range tours {
+		fmt.Printf("Tour: %s, Price: %s\n", tour.Name, tour.Price)
+	}
 }
 
 func checkError(err error) {
 	if err != nil {
 		panic(err)
 	}
+}
+
+type Tour struct {
+	Name, Price string
+}
+
+func toursFromJSON(content string) []Tour {
+	// This function would parse the JSON data and return a slice of Tour structs.
+	// For simplicity, we will return an empty slice here.
+	tours := make([]Tour, 0)
+	decoder := json.NewDecoder(strings.NewReader(content))
+	_, err := decoder.Token() // Read the opening bracket
+	checkError(err)
+	var tour Tour
+	for decoder.More() {
+		err := decoder.Decode(&tour) // Decode each tour into the Tour struct
+		checkError(err)
+		tours = append(tours, tour) // Append the tour to the slice
+	}
+	return tours
 }
